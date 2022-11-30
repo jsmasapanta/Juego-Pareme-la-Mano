@@ -1,0 +1,283 @@
+import os
+import random
+import time
+os.system("cls")
+
+def dibujo_de_mano():
+    '''
+    Esta funcion imprime el dibujo de una mano la cual sera utilizada al inicio del codigo
+    '''
+    print("     ░░░░")
+    print("    ░    ░")
+    print("    ░    ░           ░░░░")
+    print("    ░    ░          ░    ░")
+    print("    ░    ░░░░░░     ░    ░")
+    print("    ░    ░     ░░░░░     ░")
+    print("    ░    ░     ░    ░    ░")
+    print("   ░░░░░░░░    ░    ░    ░")
+    print("  ░        ░   ░    ░    ░")
+    print(" ░         ░░░░ ░░░░     ░")
+    print(" ░    ░░░░░              ░")
+    print("  ░                      ░")
+    print("   ░                    ░")
+    print("    ░                  ░")
+
+def generar_letra_para_jugar():
+    '''
+    Funcion que genera una letra con la cual los participantes deberan jugar
+
+    Retorna
+    -------
+    Retorna la variable letra como str en mayuscula
+    '''
+    #En la variable alfabeto guardamos todas las letras del abecedario
+    alfabeto = "abcdefghijklmnopqrstuvwxyz"
+    #En la variable letra usaremos una funcion que pertenece a random la cual eligira al azar una de las letras que se guardaron en la variable alfabeto
+    letra = random.choice(alfabeto)
+    return letra.upper()
+
+def imprimir_tabla_de_resultados(nombre,apellido,prov_cap,fruta,color,animal):
+    '''
+    Funcion que imprime los datos ingresados por el o los jugadores
+
+    Parametros
+    ----------
+    nombre : str
+        variable donde se ingresó un nombre con la letra que se pidio jugar
+    apellido : str
+        variable donde se ingresó un apellido con la letra que se pidio jugar
+    prov_cap : str
+        variable donde se ingresó una provincia o capital con la letra que se pidio jugar
+    fruta : str
+        variable donde se ingresó una fruta con la letra que se pidio jugar
+    color : str
+        variable donde se ingresó un color con la letra que se pidio jugar
+    animal : str
+        variable donde se ingresó un animal con la letra que se pidio jugar
+    '''
+    print("--------------------------------------------")
+    print("|NOMBRE             | ",nombre)
+    print("|APELLIDO           | ",apellido)
+    print("|PROVINCIA O CAPITAL| ",prov_cap)
+    print("|FRUTA              | ",fruta)
+    print("|COLOR              | ",color)
+    print("|ANIMAL             | ",animal)
+    print("--------------------------------------------")
+
+def parame_la_mano(capital_provincia,fruta,color,animal,letra_para_jugar):
+    '''
+    Funcion donde los jugadores ingresaran los datos para ganar puntos en el juego
+
+    Parametros
+    ----------
+    capital_provincia : lista
+        variable usada para averiguar si lo que ingresó el usuario se encuentra dentro de esta lista
+    fruta : lista
+        variable usada para averiguar si lo que ingresó el usuario se encuentra dentro de esta lista
+    color : lista
+        variable usada para averiguar si lo que ingresó el usuario se encuentra dentro de esta lista
+    animal : lista
+        variable usada para averiguar si lo que ingresó el usuario se encuentra dentro de esta lista
+    letra_para_jugar : str
+        letra generada con los que los usuarios jugaran
+
+    Retorna
+    -------
+    Retorna 0 si el jugador se demoró mas de 90 segundo en llenar los datos
+    Retorna puntaje como int si se demoro menos de 91 segundos en llenar los datos
+    '''
+    print("TIENES 1 MINUTO CON 30 SEGUNDOS PARA LLENAR LOS DATOS!!!!")
+
+    os.system("pause")#funcion para pausar el programa hasta que se presione una tecla
+    os.system("cls")#funcion que limpia pantalla
+    puntaje=0
+    #Hacemos uso de la libreria time para usar esta funcion en donde iniciara un cronometro y se lo guardara como entero en la variable tiempo_inicial'''
+    tiempo_inicial = time.time()
+
+    #Pedimos al usuario que ingrese un nombre con la letra que se genero para jugar
+    print("Ingrese un nombre con la letra ",letra_para_jugar,":")
+    ingreso_nombre=input()
+    #creamos una lista donde guardaremos las letras del nombre ingresado
+    lista_nombre=list(ingreso_nombre)
+    #Con la funcion upper() convertiremos a mayuscula cualquier letras que se encuentre En la posicion cero de la lista(lista_nombre) y la guardaremos en la variable letra'''
+    letra=lista_nombre[0].upper()
+    #si la variable letra es igual a la letra generada entonces al puntaje se le sumara mas 1
+    if(letra==letra_para_jugar):
+        puntaje=puntaje+1
+    
+    #Pedimos al usuario que ingrese un apellido con la letra que se genero para jugar
+    print("Ingrese un apellido con la letra ",letra_para_jugar,":")
+    ingreso_apellido=input()
+    #creamos una lista donde guardaremos las letras del apellido ingresado
+    lista_apellido=list(ingreso_apellido)
+    #Con la funcion upper() convertiremos a mayuscula cualquier letras que se encuentre En la posicion cero de la lista(lista_apellido) y la guardaremos en la variable letra'''
+    letra=lista_apellido[0].upper()
+    #si la variable letra es igual a la letra generada entonces al puntaje se le sumara mas 1
+    if(letra==letra_para_jugar):
+        puntaje=puntaje+1
+
+    #Pedimos al usuario que ingrese una provincia o capital del Ecuador con la letra que se genero para jugar
+    print("Ingrese una provincia o capital del Ecuador con la letra ",letra_para_jugar,":")
+    ingreso_prov_cap=input()
+    ingreso_prov_cap=ingreso_prov_cap.lower()
+    #creamos una lista donde guardaremos las letras de la provincia o capital ingresada
+    lista_prov_cap=list(ingreso_prov_cap)
+
+    #Con la funcion upper() convertiremos a mayuscula cualquier letras que se encuentre En la posicion cero de la lista(lista_prov_cap) y la guardaremos en la variable letra'''
+    letra=lista_prov_cap[0].upper()
+    #si la provincia o capital que se ingreso se encuentra en la lista capital_provincia y la variable letra es igual a la letra generada entonces al puntaje se le sumara mas 1'''
+    if((ingreso_prov_cap in capital_provincia) and(letra==letra_para_jugar)):
+        puntaje=puntaje+1
+
+    #Pedimos al usuario que ingrese una fruta con la letra que se genero para jugar
+    print("Ingrese una fruta(en singular) con la letra ",letra_para_jugar,":")
+    ingreso_fruta=input()
+    ingreso_fruta=ingreso_fruta.lower()
+    #creamos una lista donde guardaremos las letras de la fruta ingresada
+    lista_fruta=list(ingreso_fruta)
+
+    #Con la funcion upper() convertiremos a mayuscula cualquier letras que se encuentre En la posicion cero de la lista(lista_fruta) y la guardaremos en la variable letra'''
+    letra=lista_fruta[0].upper()
+
+    #si la fruta que se ingreso se encuentra en la lista fruta y la variable letra es igual a la letra generada entonces al puntaje se le sumara mas 1'''
+    if((ingreso_fruta in fruta) and(letra==letra_para_jugar)):
+        puntaje=puntaje+1
+
+    
+    #Pedimos al usuario que ingrese un color con la letra que se genero para jugar
+    print("Ingrese un color con la letra ",letra_para_jugar,":")
+    ingreso_color=input()
+    ingreso_color=ingreso_color.lower()
+    #creamos una lista donde guardaremos las letras del color ingresado
+    lista_color=list(ingreso_color)
+
+    #Con la funcion upper() convertiremos a mayuscula cualquier letras que se encuentre En la posicion cero de la lista(lista_color) y la guardaremos en la variable letra
+    letra=lista_color[0].upper()
+
+    #si el color que se ingreso se encuentra en la lista color y la variable letra es igual a la letra generada entonces al puntaje se le sumara mas 1'''
+    if((ingreso_color in color) and(letra==letra_para_jugar)):
+        puntaje=puntaje+1
+
+    #Pedimos al usuario que ingrese un animal con la letra que se genero para jugar
+    print("Ingrese un animal(terrestre) con la letra ",letra_para_jugar,":")
+    ingreso_animal=input()
+    ingreso_animal=ingreso_animal.lower()
+    #creamos una lista donde guardaremos las letras del animal ingresado
+    lista_animal=list(ingreso_animal)
+
+    #Con la funcion upper() convertiremos a mayuscula cualquier letras que se encuentre En la posicion cero de la lista(lista_animal) y la guardaremos en la variable letra'''
+    letra=lista_animal[0].upper()
+
+    #si el color que se ingreso se encuentra en la lista animal y la variable letra es igual a la letra generada entonces al puntaje se le sumara mas 1
+    if((ingreso_animal in animal) and(letra==letra_para_jugar)):
+        puntaje=puntaje+1
+
+    #en esta funcion imprimiremos lo que ha ingresado los jugadores
+    imprimir_tabla_de_resultados(ingreso_nombre,ingreso_apellido,ingreso_prov_cap,ingreso_fruta,ingreso_color,ingreso_animal)
+
+    #tiempo_final es el tiempo que se demoro en terminar de llenar los datos un jugador
+    tiempo_final = time.time()
+
+    #el tiempo total es el tiempo que se demoro el jugador en terminar de llenar los datos para el juego
+    tiempo_total = tiempo_final - tiempo_inicial
+    print("te demoraste :", tiempo_total)
+    print("PUNTAJE: ",puntaje)
+    #Si el jugador se demora mas de 90 segundos entonces tendra un puntaje de cero pero si los llena a tiempo entonces el puntaje tendra el valor de las palabras que ha acertado'''
+    if(tiempo_total>90):
+        print("No llenaste los datos a tiempo")
+        return 0
+    else:
+        return puntaje
+
+    
+if __name__ == '__main__':
+
+    '''Las siguientes listas seran utilizadas como diccionarios para este juego'''
+    capital_provincia=["azuay","bolivar","cuenca","guaranda","azogues","cañar","carchi","tulcan","chimborazo","riobamba","cotopaxi","latacunga",
+                    "el oro","machala","esmeraldas","guayas","guayaquil","imbabura","ibarra","loja","los rios","babahoyo","manabi","portoviejo",
+                    "morona santiago","macas","napo","tena","orellana","puerto francisco de orellana","pastaza","puyo","pichincha","quito",
+                    "santa elena","santo domingo de los tsachilas","santo domingo de los colorados","sucumbios","nueva loja","tungurahua","ambato",
+                    "zamora","zamora chinchipe"]
+    fruta=["albaricoque","almendra","arandano","banano","banana","cereza","ciruela","camote","durazno","endrina","frambuesa","fresa","mandarina",
+            "granadilla","grosella","higo","jengibre","kiwi","limon","lima","manzana","moras","melon","melocoton","membrillo","naranja","nispero",
+            "pera","piña","platano","papaya","pepino","Pomelo","sandia","sambo","uva"]
+    color=["amarillo","azul","blanco","cafe","celeste","cian","fuxia","gris","marron","naranja","purpura","morado","negro","turquesa","rojo","rosado",
+        "verde","magenta","salmon","beige","lila","lavanda","mostaza","violeta"]
+
+    animal=["camello","liebre","gato","oveja","bufalo","alce","dromedario","orangutan","avestruz","serpiente","cocodrilo","caiman","gallo","gallina",
+            "pinguino","vaca","rana","toro","conejo","becerro","armadillo","camaleon","koala","burro","mono","lobo","pantera","perro","cerdo","venado",
+            "rinoceronte","rata","raton","leopardo","ganso","tigre","cabra","canguro","asno","tortuga","ardilla","jirafa","chango","topo","iguana",
+            "mapache","elefante","oso","oso polar","mula","chita","gorila","anaconda","caballo","jaguar","castor","hamster","mandril","leon"]
+
+
+    #Imprimimos el mensaje de bienvenidad
+    print("BIENVENIDOs AL JUEGO DE PARAME LA MANO") 
+    #'''Hacemos uso de esta funcion para imprimir una mano'''
+    dibujo_de_mano()
+    print("")
+
+    #Ingresamos el numero de jugadores en la variable cantidadJugadores '''
+    cantidadJugadores = int(input("Ingrese la cantidad de jugadores(maximo 3 jugadores): "))
+    #usaremos el ciclo repetitivo while para validar que solo ingrese numeros que se encuentren dentro del rango permitido, si ingresa numeros que no esten dentro del rango entonces el programa volvera a pedir al usuario que ingrese de nuevo una cantidad de jugadores '''
+    while(cantidadJugadores<1 or cantidadJugadores>3):
+        cantidadJugadores = int(input("Ingrese solo numeros dentro del rango: "))
+
+    #en la variable "letra_para_jugar" guardaremos la letra generada al azar que nos haya generado la funcion'''
+    letra_para_jugar=generar_letra_para_jugar()
+
+    #print que indica a los participantes con que letra jugaran'''
+    print("LOS PARTICIPANTES DEBERAN JUGAR CON LA LETRA: ",letra_para_jugar)
+    #Funcion que limpia la pantalla'''
+    os.system("cls") 
+    print("")
+
+    #si la cantidad de jugadores es 1 entonces:"
+    if(cantidadJugadores==1):
+        print("JUGADOR 1:")
+        #llamamos a la funcion parame la mano para que el juegador 1 empiece a jugar'''
+        puntaje_jugador_1=parame_la_mano(capital_provincia,fruta,color,animal,letra_para_jugar)
+        #imprimimos el puntaje del jugador 1'''
+        print("El puntaje del jugador 1 es: ",puntaje_jugador_1)
+        #imprimimos el mensaje ganador'''
+        print("EL GANADOR ES EL JUGADOR 1")
+    #si la cantidad de jugadores es 2 entonces:"
+    if(cantidadJugadores==2):
+        print("JUGADOR 1:")
+        #llamamos a la funcion parame la mano para que el juegador 1 empiece a jugar'''
+        puntaje_jugador_1=parame_la_mano(capital_provincia,fruta,color,animal,letra_para_jugar)
+        #imprimimos el puntaje del jugador 1'''
+        print("El puntaje del jugador 1 es: ",puntaje_jugador_1)
+        print("JUGADOR 2:")
+        #llamamos a la funcion parame la mano para que el juegador 2 empiece a jugar'''
+        puntaje_jugador_2=parame_la_mano(capital_provincia,fruta,color,animal,letra_para_jugar)
+        #imprimimos el puntaje del jugador 2'''
+        print("El puntaje del jugador 2 es: ",puntaje_jugador_2)
+        #aqui dependiendo de que jugador tengas mas puntaje se imprimira quien es el ganador'''
+        if(puntaje_jugador_1>puntaje_jugador_2):
+            print("EL GANADOR ES EL JUGADOR 1")
+        else:
+            print("EL GANADOR ES EL JUGADOR 2")
+    #si la cantidad de jugadores es 3 entonces:"
+    if(cantidadJugadores==3):
+        print("JUGADOR 1:")
+        #llamamos a la funcion parame la mano para que el juegador 1 empiece a jugar'''
+        puntaje_jugador_1=parame_la_mano(capital_provincia,fruta,color,animal,letra_para_jugar)
+        #imprimimos el puntaje del jugador 1'''
+        print("El puntaje del jugador 1 es: ",puntaje_jugador_1)
+        print("JUGADOR 2:")
+        #llamamos a la funcion parame la mano para que el juegador 2 empiece a jugar'''
+        puntaje_jugador_2=parame_la_mano(capital_provincia,fruta,color,animal,letra_para_jugar)
+        #imprimimos el puntaje del jugador 2'''
+        print("El puntaje del jugador 2 es: ",puntaje_jugador_2)
+        print("JUGADOR 3:")
+        #llamamos a la funcion parame la mano para que el juegador 3 empiece a jugar'''
+        puntaje_jugador_3=parame_la_mano(capital_provincia,fruta,color,animal,letra_para_jugar)
+        #imprimimos el puntaje del jugador 3'''
+        print("El puntaje del jugador 3 es: ",puntaje_jugador_2)
+        #aqui dependiendo de que jugador tengas mas puntaje se imprimira quien es el ganador'''
+        if(puntaje_jugador_1>puntaje_jugador_2 and puntaje_jugador_1>puntaje_jugador_3):
+            print("EL GANADOR ES EL JUGADOR 1")
+        elif(puntaje_jugador_2>puntaje_jugador_1 and puntaje_jugador_2>puntaje_jugador_3):
+            print("EL GANADOR ES EL JUGADOR 2")
+        elif(puntaje_jugador_3>puntaje_jugador_1 and puntaje_jugador_3>puntaje_jugador_2):
+            print("EL GANADOR ES EL JUGADOR 3")
