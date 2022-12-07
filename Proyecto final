@@ -1,12 +1,35 @@
+
+"""
+UNIVERSIDAD DE FUERZAS ARMADAS ESPE
+
+PAREME LA MANO, es un juego tradicional que se lo juega en un papel entre varios jugadores, que consiste en llenar enunciados con palabras que comienzen con una letra 
+al azar sorteado por el juego, tras llenar todos los datos correctos el jugador que acabe en el menor tiempo posible gana el juego.
+
+Autores:
+Jefferson Santiago Masapanta Guilcatoma
+
+Versión:
+VERSION 1.1
+"""
+
+#Declaramos nuestras librerias a usar durante el programa
 import os
 import random
 import time
 os.system("cls")
 
 def dibujo_de_mano():
-    '''
-    Esta funcion imprime el dibujo de una mano la cual sera utilizada al inicio del codigo
-    '''
+    """
+    Es un procedimiento que nos muestra la imagen de logotipo de nuestro juego, la mano representa que el jugador que acabe pronto alza la mano y  
+    comienza a contar al resto de jugadores.
+    Parametros:
+    ------------
+        No tiene parametros de entrada
+    
+    Retorna:
+    ------------
+    No retorna Ningun valor
+    """
     print("     ░░░░")
     print("    ░    ░")
     print("    ░    ░           ░░░░")
@@ -23,13 +46,18 @@ def dibujo_de_mano():
     print("    ░                  ░")
 
 def generar_letra_para_jugar():
-    '''
+    """
     Funcion que genera una letra con la cual los participantes deberan jugar
 
-    Retorna
-    -------
+    Parametros:
+    ------------
+        No tiene parametros de entrada
+    
+    Retorna:
+    ------------
     Retorna la variable letra como str en mayuscula
-    '''
+    
+    """
     #En la variable alfabeto guardamos todas las letras del abecedario
     alfabeto = "abcdefghijklmnopqrstuvwxyz"
     #En la variable letra usaremos una funcion que pertenece a random la cual eligira al azar una de las letras que se guardaron en la variable alfabeto
@@ -37,9 +65,9 @@ def generar_letra_para_jugar():
     return letra.upper()
 
 def imprimir_tabla_de_resultados(nombre,apellido,prov_cap,fruta,color,animal):
-    '''
+    """
     Funcion que imprime los datos ingresados por el o los jugadores
-
+    
     Parametros
     ----------
     nombre : str
@@ -54,7 +82,11 @@ def imprimir_tabla_de_resultados(nombre,apellido,prov_cap,fruta,color,animal):
         variable donde se ingresó un color con la letra que se pidio jugar
     animal : str
         variable donde se ingresó un animal con la letra que se pidio jugar
-    '''
+     Retorna:
+    ------------
+    No retorna Ningun valor
+    """
+    
     print("--------------------------------------------")
     print("|NOMBRE             | ",nombre)
     print("|APELLIDO           | ",apellido)
@@ -65,9 +97,9 @@ def imprimir_tabla_de_resultados(nombre,apellido,prov_cap,fruta,color,animal):
     print("--------------------------------------------")
 
 def parame_la_mano(capital_provincia,fruta,color,animal,letra_para_jugar):
-    '''
+    """
     Funcion donde los jugadores ingresaran los datos para ganar puntos en el juego
-
+      
     Parametros
     ----------
     capital_provincia : lista
@@ -85,11 +117,12 @@ def parame_la_mano(capital_provincia,fruta,color,animal,letra_para_jugar):
     -------
     Retorna 0 si el jugador se demoró mas de 90 segundo en llenar los datos
     Retorna puntaje como int si se demoro menos de 91 segundos en llenar los datos
-    '''
+    """
     print("TIENES 1 MINUTO CON 30 SEGUNDOS PARA LLENAR LOS DATOS!!!!")
-
-    os.system("pause")#funcion para pausar el programa hasta que se presione una tecla
-    os.system("cls")#funcion que limpia pantalla
+    #funcion para pausar el programa hasta que se presione una tecla
+    os.system("pause")
+    #funcion que limpia pantalla
+    os.system("cls")
     puntaje=0
     #Hacemos uso de la libreria time para usar esta funcion en donde iniciara un cronometro y se lo guardara como entero en la variable tiempo_inicial'''
     tiempo_inicial = time.time()
